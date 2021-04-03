@@ -1,0 +1,90 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <!-- Compiled and minified Materialize CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- CSS Adicional -->
+    <link rel="stylesheet" type="text/css" href="{% static 'sitio/sitio.css' %}">
+
+    <!-- Chart.js 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+    -->
+
+    <title>GameRoom</title>
+
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="navbar-fixed">
+            <nav>
+                <div class="nav-wrapper black">
+                    <div class="container">
+                        <div class="navbar-li">
+                            <ul id="nav-mobile" class="left hide-on-med-and-down">
+                                <li><a href="{% url 'home' %}" class="brand-logo">GameRoom</a></li>
+                            </ul>
+                            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                                <li><a href="{% url 'home' %}">Inicio</a></li>
+                                <li><a href="{% url 'noticias' %}">Noticias</a></li>
+                                <li><a href="{% url 'juegos' %}">Juegos</a></li>
+                                <li><a href="{% url 'estaciones' %}">Estaciones</a></li>
+                                <li><a href="{% url 'productos' %}">Productos</a></li>
+                                <li><a href="{% url 'about' %}">Nosotros</a></li>
+                                <li><a href="{% url 'contacto' %}">Contacto</a></li>
+                                <li>|</li>
+                                {% if user.is_authenticated %}
+                                    <li><a href="{% url 'profile' %}">Perfil</a></li>
+                                    <!--<li>
+                                        <form action="{% url 'logout' %}" method='post'>
+                                            {% csrf_token %}
+                                            <button type="submit">Cerrar Sesión</button>
+                                        </form>
+                                    </li> -->
+                                    <li><a href="{% url 'logout' %}">Cerrar Sesión</a></li>
+                                {% else %}
+                                    <li><a href="{% url 'login' %}">Iniciar Sesión</a></li>
+                                    <li><a href="{% url 'register' %}">Registrarse</a></li>
+                                {% endif %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main role="main" class="container">
+        <div class="row">
+            <div>
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+                {% block content %}{% endblock %}
+            </div>
+        </div>
+    </main>
+    
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <!-- Compiled and minified Materialize JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>

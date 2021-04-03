@@ -1,0 +1,56 @@
+{% extends "sitio/base.html" %}
+{% block content %}
+
+<h1>Estaciones</h1>
+
+<hr>
+
+<br><br><br><br>
+
+<div class="row center-align">
+
+    <div class="col s4">
+        <i class="large material-icons">hd</i>
+        <h5>Monitores con la mejor definición</h5>
+    </div>
+    <div class="col s4">
+        <i class="large material-icons">gamepad</i>
+        <h5>Tenemos las últimas consolas del mercado</h5>
+    </div>
+    <div class="col s4">
+        <i class="large material-icons">computer</i>
+        <h5>Contamos con computadoras de gama alta</h5>
+    </div>
+  
+</div>
+
+<br><br><br><br>
+
+<div class="row">
+
+    {% for estacion in estaciones %}
+
+    <div class="col s4">
+        <div class="card small hoverable grey lighten-2">
+            <div class="card-image">
+                <img height="" width="" src="{{estacion.imagen.url}}">
+            </div>
+            <div class="card-content">
+                <span class="card-title">{{estacion.nombre}}</span>
+            </div>
+            <div class="card-action">
+                <a class="activator indigo-text" href="#">Ver Detalle</a>
+            </div>
+            <div class="card-reveal grey lighten-2">
+                <span class="card-title">{{estacion.nombre}}<i class="material-icons right">close</i></span>
+                <br>
+                <p>{{estacion.descripcion}}</p>
+            </div>
+        </div>
+    </div>
+
+    {% endfor %}
+
+</div>
+
+{% endblock content %}
