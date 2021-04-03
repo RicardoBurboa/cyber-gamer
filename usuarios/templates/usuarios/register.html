@@ -1,0 +1,9 @@
+{% extends "sitio/base.html" %}
+{% block content %}
+<h1>Registrar</h1>
+<form method="post">
+    {% csrf_token %}
+    {{form}}
+    <input type="submit" value="Registrar Usuario">
+</form>
+{% endblock content %}
